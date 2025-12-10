@@ -2,28 +2,34 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>Sí ❤</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="si">
-  <audio autoplay loop>
+  <!-- Reproductor de audio fuera del iframe, en el body principal -->
+  <audio id="globalAudio" autoplay loop>
     <source src="cancion.mp3" type="audio/mpeg">
+    Tu navegador no soporta el formato de audio.
   </audio>
 
   <div class="container">
-    <h2>¡La mejor noticia del mundo! 🎉❤</h2>
-    <p>Cuando me sijiste que si en nuestro gran viaje, aunque sin esto aun terminado, casi queria llorar y estaba muy nervioso, peri muy feliz
-    Prometo hacerte feliz todo el tiempo que tú me lo permitas ✨</p>
+    <h2> ¡La mejor noticia del mundo! 🎉❤</h2>
+    <p>Cuando me dijiste que si en nuestro gran viaje, casi quería llorar y estaba muy nervioso, pero muy feliz, por todo lo que me hiciste sentir en ese momento.
+    Prometí hacerte feliz todo el tiempo que tú me lo permitieras. ✨</p>
 
-    <p>Se que he fallado a la promsa que te hice, que lastime tu corazon y que tal vez ya no volvamos a estar juntos y ya no queras amarme</p>
-    <p>Me destroza mi corazon, que las cosas esten asi, pero si quero que sepas, que te admiro, que te voy a seguir amando, que eres una mujer en toda la extencion de la palabra, siempre fui tu fan, ame todas los csas que hacias por nosotros, oajala pudiera cambiar las palaras que saliern de mi boca y poder estar amandote y cuidandote, ojala hubiese preguntado en lgar de asumir, espero algun dia puedas perdonarme</p>
+    <p>Se que he fallado a la promesa que te hice, que lastimé tu corazón y que tal vez ya no volvamos a estar juntos y ya no queras amarme</p>
+    <p>Me destroza mi corazón, que las cosas estén así, pero si quiero que sepas, que te admiro, que te voy a seguir amando, que eres una mujer en toda la extensión de la palabra, siempre fui tu fan, ame todas las cosas que hacías por nosotros.
+Se que no puedo volver el tiempo, pero que sepas, que quiero estar a tu lado, quiero cuidarte, estar cuando me necesites, vivir mas cosas juntos, si es por el RESTO DE LA VIDA, voy a ser mas feliz de lo que soy. </p>
 
-    <p>Te repito mi amor, todo lamor que te tengo es real, todo lo que siento es verdadero, nunca te menti</p>
+    <p>Te repito mi amor, todo el amor que te tengo es real, todo lo que siento es verdadero, nunca te mentí, todos los planes que te dije los quiero a tu lado y ojala puedas perdonarme</p>
 
-    <p>Recuerdnos siempre de esta forma ❤</p>
+    <p>Recuérdanos siempre de esta forma ❤</p>
+
 
     <img src="foto7.jpg" alt="Foto especial"><br>
-    <a class="btn" href="index.html">🔄 Volver a empezar</a>
+    <a class="btn" href="index.html">🔄 Volver a empezar, a tu lado seria mejor</a>
   </div>
 
   <!-- Corazones flotando -->
@@ -32,5 +38,34 @@
   <span class="heart" style="left:50%; animation-delay:2s;">❤</span>
   <span class="heart" style="left:70%; animation-delay:3s;">💖</span>
   <span class="heart" style="left:90%; animation-delay:4s;">❤</span>
+
+<script>
+    const audio = document.getElementById('globalAudio');
+
+    // Al cargar la página, comprobar el estado del audio
+    window.onload = function() {
+      audio.muted = false; // Desmutear el audio
+
+      // Recuperar el estado de reproducción desde localStorage
+      const isPlaying = localStorage.getItem('audioPlaying');
+
+      if (isPlaying === 'true') {
+        audio.play();  // Reproducir si estaba guardado como "true"
+      } else {
+        audio.pause();  // Pausar si estaba guardado como "false"
+      }
+    };
+
+    // Guardar el estado de reproducción del audio
+    audio.addEventListener('play', function() {
+      localStorage.setItem('audioPlaying', 'true');
+    });
+
+    audio.addEventListener('pause', function() {
+      localStorage.setItem('audioPlaying', 'false');
+    });
+  </script>
+
+
 </body>
 </html>

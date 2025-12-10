@@ -2,33 +2,64 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Brenda ❤</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Brenda❤</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="inicio">
-  <audio autoplay loop>
+
+  <!-- Reproductor de audio fuera del iframe, en el body principal -->
+  <audio id="globalAudio" autoplay loop>
     <source src="cancion.mp3" type="audio/mpeg">
+    Tu navegador no soporta el formato de audio.
   </audio>
 
   <div class="container">
     <h1>Brenda ❤</h1>
-    <p>Antes de que continues leyendo, quiero decir un par de cosas:</p>
-    <p>Recuerdas la fiesta en donde nos dimos nuetro primer beso?</p>
-    <p>Pues esa no era la primera vez que te vi, y tu hicite que recodara cuando llegaste a la albera en la boda,  puedo recordar tu cara porque dijiste algo, te reiste con esa sonrisa tan bonita, despues me rei yo 😅  </p>
-    <p>Paso la fiesta, te volvi a ver, no pensaba que despues de ese dia no podria sacarte de mi cabeza.</p>
+    <p>Antes de que continues leyendo, quiero que hacerte saber algunos cuantos detalles, todos perfetos:</p>
+    <p>Recuerdas la fiesta en donde nos dimos nuestro primer beso? </p>
+    <p>Pues esa no era la primera vez que te vi, y tu hiciste que recodara cuando llegaste a la albera en la boda, puedo recordar tu cara porque dijiste algo, te reíste con esa sonrisa tan bonita, después me reí yo 😅 </p>
+    <p>Paso la fiesta, te volví a ver, no pensaba que después de ese día no podría sacarte de mi cabeza. </p>
     <p>Y aunque tu naricita siempre suda 😅 para mí es lo más tierno. Siempre voy a decir y recordarte que eres de lo mejor que me pudo pasar. 💖</p>
-
-    <p>La primera cita que tuvimos, fue algo muy bello, porque aunque estabamos nervisos, ahi confirmamos que nos gustabamas de la misma forma tan intensa, el ver tus ojos como me me miraban, como te reias de mis chistes malos, el primer beso de la cita, agarrar tu mamno, es algo que jamas poder olvidar, fue una noche perfecta porque de nuevo despues de mucho tiempo, me senti emociado por alguien. (Te conte que comre ropa solo para verte, porque ya queria que fueras mi novia)</p>
-<p>Aqui estoy siendo el mas feliz de mundo ❤</p>
-    
+    <p>La primera cita que tuvimos, fue algo muy bello, porque, aunque estábamos nerviosos, ahí confirmamos que nos gustábamos de la misma forma tan intensa, el ver tus ojos como me miraban, como te reías de mis chistes malos, el primer beso de la cita, agarrar tu mano, es algo que jamás poder olvidar, fue una noche perfecta porque de nuevo después de mucho tiempo, me sentí emocionado por alguien. (Te conté que compré ropa solo para verte, porque ya quería que fueras mi novia y quise quedar bien contigo) </p>
+    <p>Aquí estoy siendo el más feliz de mundo ❤</p>
     <div>
-      
       <img src="foto1.jpg" alt="Foto juntos">
     </div>
-     <a class="btn" href="pregunta.html">Se que las cosas no estan bien y posiblemente no lo estaran, pero espero que quieras continuar 
-    ¿Quieres continuar? 👉</a>
+    <a class="btn" href="pregunta.html">Sé que las cosas no están bien y posiblemente no lo estarán, pero espero que quieras continuar ¿Quieres continuar?👉</a>
   </div>
 
+  <!-- Reproductor de música persistente en el footer (fuera del iframe) -->
+  <footer>
+    <!-- Aquí no usamos iframe, el reproductor está en la página directamente -->
+  </footer>
+
+  <script>
+    const audio = document.getElementById('globalAudio');
+
+    // Desmutear el audio automáticamente al cargar la página
+    window.onload = function() {
+      audio.muted = false; // Desmutear el audio
+
+      // Recuperar el estado de reproducción desde localStorage
+      const isPlaying = localStorage.getItem('audioPlaying');
+
+      if (isPlaying === 'true') {
+        audio.play();  // Reproducir si estaba guardado como "true"
+      } else {
+        audio.pause();  // Pausar si estaba guardado como "false"
+      }
+    };
+
+    // Guardar el estado de reproducción del audio
+    audio.addEventListener('play', function() {
+      localStorage.setItem('audioPlaying', 'true');
+    });
+
+    audio.addEventListener('pause', function() {
+      localStorage.setItem('audioPlaying', 'false');
+    });
+  </script>
 
 </body>
 </html>

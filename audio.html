@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Música</title>
+</head>
+<body>
+
+  <!-- El reproductor de audio está ahora fuera del iframe, en cada página donde lo necesitas -->
+  <audio id="globalAudio" autoplay loop>
+    <source src="cancion.mp3" type="audio/mpeg">
+    Tu navegador no soporta el formato de audio.
+  </audio>
+
+  <script>
+    const audio = document.getElementById('globalAudio');
+
+    // Al cargar la página, comprobar el estado del audio
+    window.onload = function() {
+      audio.muted = false; // Desmutear el audio
+
+      // Recuperar el estado de reproducción desde localStorage
+      const isPlaying = localStorage.getItem('audioPlaying');
+
+      if (isPlaying === 'true') {
+        audio.play();  // Reproducir si estaba guardado como "true"
+      } else {
+        audio.pause();  // Pausar si estaba guardado como "false"
+      }
+    };
+
+    // Guardar el estado de reproducción del audio
+    audio.addEventListener('play', function() {
+      localStorage.setItem('audioPlaying', 'true');
+    });
+
+    audio.addEventListener('pause', function() {
+      localStorage.setItem('audioPlaying', 'false');
+    });
+  </script>
+
+</body>
+</html>
+
+
+

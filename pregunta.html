@@ -2,19 +2,24 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>La Gran Pregunta ❤</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="pregunta">
-  <audio autoplay loop>
+  <!-- Reproductor de audio fuera del iframe, en el body principal -->
+  <audio id="globalAudio" autoplay loop>
     <source src="cancion.mp3" type="audio/mpeg">
+    Tu navegador no soporta el formato de audio.
   </audio>
 
   <div class="container">
     <h2>Brenda…</h2>
-    <p>¿Quieres ser mi novia? 💍💖</p>
-    <p>Para poder hacerte esta pregunta, ya habiamos pasado bastantes momentos jutos, ya estabamos planeando nuestro primer viaje, ya habiamos echo pijamadas y muchas cosas mas que hicimos jutos, ya habias conocido a mi famialia, fuimos al boliche, a batear, todo los momentos que pasamos juntos estan en mi mente y en mi corazon quiero que lo sepas, otras cositas deliciosas que no puedo decir jaja </p>
-    <p>Siempre fuiste tu mi mejor compañia, la que iboers querido para toda la vida</p>
+    <p> ¿Quieres ser mi novia? 💍💖</p>
+    <p>Para poder hacerte esta pregunta, ya habíamos pasado bastantes momentos juntos, ya estábamos planeando nuestro primer viaje, ya habíamos hecho pijamadas y muchas cosas más que hicimos juntos, ya habías conocido a mi familia, fuimos al boliche, a batear, todos los momentos que pasamos juntos están en mi mente y en mi corazón quiero que lo sepas, otras cositas deliciosas que no puedo decir jaja </p>
+    <p>Siempre fuiste tu mi mejor compañía, la que deseo para toda la vida</p>
+
 
     <p>
     <img src="foto2.jpg" alt="Foto juntos">
@@ -28,5 +33,35 @@
     <a class="btn" href="si.html">Sí quiero 💕</a>
     <a class="btn" href="no.html">Mmm… aún no 😔</a>
   </div>
+
+    <script>
+    const audio = document.getElementById('globalAudio');
+
+    // Al cargar la página, comprobar el estado del audio
+    window.onload = function() {
+      audio.muted = false; // Desmutear el audio
+
+      // Recuperar el estado de reproducción desde localStorage
+      const isPlaying = localStorage.getItem('audioPlaying');
+
+      if (isPlaying === 'true') {
+        audio.play();  // Reproducir si estaba guardado como "true"
+      } else {
+        audio.pause();  // Pausar si estaba guardado como "false"
+      }
+    };
+
+    // Guardar el estado de reproducción del audio
+    audio.addEventListener('play', function() {
+      localStorage.setItem('audioPlaying', 'true');
+    });
+
+    audio.addEventListener('pause', function() {
+      localStorage.setItem('audioPlaying', 'false');
+    });
+  </script>
+
+
+
 </body>
 </html>
